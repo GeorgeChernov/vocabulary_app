@@ -1,11 +1,12 @@
 import {WordStorageService} from './word-storage.service'
 import {WordService} from './word.service'
 import {WordExistException} from './word-exist-exception'
+import {Word} from './word.model'
 
 describe('WordService', function () {
 
-    let expectedWords;
-    let mockService;
+    let expectedWords: Word[];
+    let mockService: WordStorageService;
     let cat = {inEnglish: 'cat', inRussian: 'кошка'};
     let dog = {inEnglish: 'dog', inRussian: 'собака'};
     let fox = {inEnglish: 'fox', inRussian: 'лиса'};

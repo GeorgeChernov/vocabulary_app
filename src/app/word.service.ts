@@ -8,7 +8,7 @@ export class WordService {
 
     private words: Word[] = [];
 
-    constructor (wordStorage: WordStorageService){
+    constructor (private wordStorage: WordStorageService){
         this.words = wordStorage.getAll();
     }
 
@@ -18,11 +18,11 @@ export class WordService {
 
     add(word: Word): void {
 
-        var existedWord = this.words.filter(function(wordFromList){
-            return wordFromList.inEnglish === word.inEnglish;
+        var isWordExist = this.words.some(function(savedWord){
+            return savedWord.inEnglish === word.inEnglish;
         });
 
-        if(existedWord.length){
+        if(isWordExist){
             throw new WordExistException();
         }
 
