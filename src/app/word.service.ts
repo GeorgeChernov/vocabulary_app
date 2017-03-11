@@ -1,5 +1,6 @@
 import { Word } from './word.model'
 import { WordStorageService } from './wordStorage.service'
+import { WordExistException } from './word-exist-exception'
 import {Injectable} from "@angular/core";
 
 @Injectable()
@@ -16,6 +17,15 @@ export class WordService {
     };
 
     add(word: Word): void {
+
+        var existedWord = this.words.filter(function(wordFromList){
+            return wordFromList.inEnglish === word.inEnglish;
+        });
+
+        if(existedWord.length){
+            throw new WordExistException();
+        }
+
         this.words.push(word);
     };
 
@@ -26,4 +36,5 @@ export class WordService {
             this.words.splice(index, 1);
         }
     };
+
 }
