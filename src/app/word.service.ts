@@ -1,5 +1,5 @@
 import { Word } from './word.model'
-import { WordStorageService } from './wordStorage.service'
+import { WordStorageService } from './word-storage.service'
 import { WordExistException } from './word-exist-exception'
 import {Injectable} from "@angular/core";
 
