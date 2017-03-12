@@ -9,7 +9,9 @@ export class WordService {
     private words: Word[] = [];
 
     constructor (private wordStorage: WordStorageService){
-        this.words = wordStorage.getAll();
+
+        let wordsFromStorage = wordStorage.getAll();
+        this.words = wordsFromStorage || new Array<Word>();
     }
 
     getAll(): Word[] {
@@ -27,6 +29,7 @@ export class WordService {
         }
 
         this.words.push(word);
+        this.wordStorage.save(this.words);
     };
 
     remove(word: Word): void {
@@ -34,6 +37,7 @@ export class WordService {
         var index = this.words.indexOf(word, 0);
         if (index > -1) {
             this.words.splice(index, 1);
+            this.wordStorage.save(this.words);
         }
     };
 

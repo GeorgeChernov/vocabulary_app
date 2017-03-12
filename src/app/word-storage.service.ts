@@ -4,9 +4,14 @@ import {Injectable} from "@angular/core";
 @Injectable()
 export class WordStorageService {
 
-    private words: Word[] = [{inEnglish: 'cat', inRussian: 'кошка'}];
-
     getAll(): Word[] {
-        return this.words;
+
+        var words = new Array<Word>();
+        words = JSON.parse(localStorage.getItem('words'));
+        return words;
+    }
+
+    save(words: Word[]): void{
+        localStorage.setItem('words', JSON.stringify(words));
     }
 }
